@@ -5,6 +5,10 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 const register = require("./Routes/register");
+const login = require("./Routes/login");
+const profile = require("./Routes/profile");
+const projects = require("./Routes/projects");
+const tasks = require("./Routes/task");
 
 const PORT = process.env.PORT || 5001;
 
@@ -21,6 +25,10 @@ mongoose
   });
 
 app.use("/register", register);
+app.use("/login", login);
+app.use("/profile", profile);
+app.use("/projects", projects);
+app.use("/tasks", tasks);
 
 app.listen(PORT, () => {
   console.log("Server Started");
