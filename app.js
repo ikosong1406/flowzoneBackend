@@ -1,16 +1,27 @@
 const express = require("express");
 const app = express();
-const port = 3000;
-
-// Middleware to parse JSON bodies
+const mongoose = require("mongoose");
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
+const register = require("./Routes/register");
 
-// Define a simple route
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+const PORT = process.env.PORT || 5001;
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+const mongoUrl =
+  "mongodb+srv://trustledger:trustledger@cluster0.pwakngi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+mongoose
+  .connect(mongoUrl)
+  .then(() => {
+    console.log("Database Connected");
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
+app.use("/register", register);
+
+app.listen(PORT, () => {
+  console.log("Server Started");
 });
