@@ -9,6 +9,7 @@ const login = require("./Routes/login");
 const profile = require("./Routes/profile");
 const projects = require("./Routes/projects");
 const tasks = require("./Routes/task");
+const recommend = require("./Routes/recomend");
 
 const PORT = process.env.PORT || 5001;
 
@@ -29,6 +30,7 @@ app.use("/login", login);
 app.use("/profile", profile);
 app.use("/projects", projects);
 app.use("/tasks", tasks);
+app.use("/recommend", recommend);
 
 app.listen(PORT, () => {
   console.log("Server Started");
