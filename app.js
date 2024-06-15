@@ -13,6 +13,8 @@ const projects = require("./Routes/projects");
 const tasks = require("./Routes/task");
 const recommend = require("./Routes/recomend");
 const chat = require("./Routes/chat");
+const notification = require("./Routes/notification");
+const Notification = require("./models/Notification");
 
 const server = http.createServer(app);
 const io = new Server(server);
@@ -37,6 +39,7 @@ app.use("/projects", projects);
 app.use("/tasks", tasks);
 app.use("/recommend", recommend);
 app.use("/chat", chat);
+app.use("/notification", notification);
 
 io.on("connection", (socket) => {
   console.log("A user connected");

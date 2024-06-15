@@ -2,6 +2,7 @@ const express = require("express");
 const { body, validationResult } = require("express-validator");
 const Project = require("../models/Project");
 const User = require("../models/User");
+const Notification = require("../models/Notification");
 
 const router = express.Router();
 
@@ -98,7 +99,19 @@ router.put(
       if (timeline) project.timeline = timeline;
 
       await project.save();
-      res.json({ msg: "Project updated successfully", project });
+
+      // Create notifications for project update
+      project.teamMembers.forEach(async (memberId) => {
+        const notification = new Notification({
+          user: memberId,
+          type: "ProjectUpdate",
+          message: `The project "${project.name}" has been updated.`,
+        });
+
+        await notification.save();
+      });
+
+      res.status(200).json({ msg: "Project updated successfully", project });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

@@ -1,6 +1,7 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const Task = require("../models/Task");
+const Notification = require("../models/Notification");
 const Project = require("../models/Project");
 const User = require("../models/User");
 
@@ -68,6 +69,15 @@ router.put(
 
       task.assignee = assignee;
       await task.save();
+
+      // Create a notification for task assignment
+      const notification = new Notification({
+        user: assignee,
+        type: "TaskAssignment",
+        message: `You have been assigned a new task: "${task.title}".`,
+      });
+
+      await notification.save();
 
       res.status(200).json({ msg: "Task assigned successfully", task });
     } catch (err) {
