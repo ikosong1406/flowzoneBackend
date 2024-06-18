@@ -1,6 +1,9 @@
 const express = require("express");
-const User = require("../models/User");
-const Project = require("../models/Project");
+require("../Schemas/UserDetails");
+const mongoose = require("mongoose");
+
+const User = mongoose.model("UserInfo");
+const Project = require("../Schemas/Project");
 
 const router = express.Router();
 

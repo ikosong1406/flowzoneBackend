@@ -1,8 +1,11 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
-const Project = require("../models/Project");
-const User = require("../models/User");
-const Notification = require("../models/Notification");
+const Project = require("../Schemas/Project");
+require("../Schemas/UserDetails");
+
+const User = mongoose.model("UserInfo");
+const Notification = require("../Schemas/Notification");
 
 const router = express.Router();
 

@@ -14,7 +14,7 @@ const tasks = require("./Routes/task");
 const recommend = require("./Routes/recomend");
 const chat = require("./Routes/chat");
 const notification = require("./Routes/notification");
-const Notification = require("./models/Notification");
+const Notification = require("./Schemas/Notification");
 
 const server = http.createServer(app);
 const io = new Server(server);

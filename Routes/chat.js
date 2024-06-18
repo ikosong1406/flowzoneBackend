@@ -1,8 +1,11 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
-const Message = require("../models/Message");
-const ChatRoom = require("../models/ChatRoom");
-const User = require("../models/User");
+const Message = require("../Schemas/Message");
+const ChatRoom = require("../Schemas/ChatRoom");
+require("../Schemas/UserDetails");
+const mongoose = require("mongoose");
+
+const User = mongoose.model("UserInfo");
 
 const router = express.Router();
 

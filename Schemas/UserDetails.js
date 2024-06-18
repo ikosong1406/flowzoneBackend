@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose; // Extract Schema from mongoose
 
-const UserDetailsSchema = new mongoose.Schema(
+const UserDetailsSchema = new Schema(
   {
     firstname: {
       type: String,

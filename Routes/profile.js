@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-require("../Schemas/UsersDetails");
+require("../Schemas/UserDetails");
 
 const User = mongoose.model("UserInfo");
 
