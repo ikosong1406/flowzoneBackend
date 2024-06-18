@@ -1,33 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-require("../Schemas/UserDetails");
+require("../Schemas/UsersDetails");
 
 const User = mongoose.model("UserInfo");
 
 router.post("/", async (req, res) => {
-  const { email, bio, skills, portfolioLinks, socialLinks, experience } =
-    req.body;
-
   try {
-    // Find user by email
-    let user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ msg: "User not found" });
+    const { userId, fullname, gender, dob } = req.body;
+
+    // Filter out empty or null values from the update data
+    const updateData = {};
+    if (typeof fullname === "string" && fullname.trim() !== "") {
+      updateData.fullname = fullname.trim();
+    }
+    if (typeof gender === "string" && gender.trim() !== "") {
+      updateData.gender = gender.trim();
+    }
+    if (typeof dob === "string" && dob.trim() !== "") {
+      updateData.dob = dob.trim();
     }
 
-    // Update user profile
-    user.bio = bio || user.bio;
-    user.skills = skills || user.skills;
-    user.portfolioLinks = portfolioLinks || user.portfolioLinks;
-    user.socialLinks = socialLinks || user.socialLinks;
-    user.experience = experience || user.experience;
-
-    await user.save();
-    res.status(200).json({ msg: "Profile updated successfully" });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
+      updateData,
+      { new: true } // Return the updated document
+    );
+    res.json({ message: "Profile updated successfully", status: "ok" });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
