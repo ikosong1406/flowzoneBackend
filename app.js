@@ -21,7 +21,7 @@ const io = new Server(server);
 const PORT = process.env.PORT || 5001;
 
 const mongoUrl =
-  "mongodb+srv://trustledger:trustledger@cluster0.pwakngi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://flowzone:flowzone@database.srchsv4.mongodb.net/?retryWrites=true&w=majority&appName=Database";
 
 mongoose
   .connect(mongoUrl)
