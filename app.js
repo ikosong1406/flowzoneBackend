@@ -32,6 +32,9 @@ mongoose
     console.log(e);
   });
 
+require("./Schemas/UserDetails");
+const User = mongoose.model("UserInfo");
+
 app.use("/register", register);
 app.use("/login", login);
 app.use("/profile", profile);
