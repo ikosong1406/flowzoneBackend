@@ -8,6 +8,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const register = require("./Routes/register");
 const login = require("./Routes/login");
+const userData = require("./Routes/userdata");
 const profile = require("./Routes/profile");
 const projects = require("./Routes/projects");
 const tasks = require("./Routes/task");
@@ -37,6 +38,7 @@ const User = mongoose.model("UserInfo");
 
 app.use("/register", register);
 app.use("/login", login);
+app.use("/userData", userData);
 app.use("/profile", profile);
 app.use("/projects", projects);
 app.use("/tasks", tasks);

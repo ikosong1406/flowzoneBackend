@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
       password: encryptedPassword,
     });
 
-    res.send({ status: "ok", data: "User Created" });
+    res.send({ status: "ok", data: "Account Created, Please Login" });
   } catch (error) {
     res.send({ status: "error", data: error });
   }

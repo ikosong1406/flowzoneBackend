@@ -6,12 +6,10 @@ const UserDetailsSchema = new Schema(
     firstname: {
       type: String,
       required: true,
-      trim: true,
     },
     lastname: {
       type: String,
       required: true,
-      trim: true,
     },
     email: {
       type: String,
@@ -27,7 +25,6 @@ const UserDetailsSchema = new Schema(
     role: {
       type: String,
       enum: ["developer", "designer", "project manager", "other"],
-      required: true,
     },
     bio: {
       type: String,

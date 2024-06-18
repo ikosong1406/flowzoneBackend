@@ -14,18 +14,22 @@ router.post("/", async (req, res) => {
   const user = await User.findOne({ email: email });
 
   if (!user) {
-    return res.status(404).json({ error: "User doesn't exist" });
+    return res
+      .status(404)
+      .json({ status: "error", data: "User doesn't exist" });
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
-    return res.status(401).json({ error: "Invalid credentials" });
+    return res
+      .status(401)
+      .json({ status: "error", data: "Invalid credentials" });
   }
 
   const token = jwt.sign({ email: user.email }, JWT_SECRET);
 
-  res.status(200).json({ token });
+  res.status(200).json({ status: "ok", data: "Login successful", token });
 });
 
 module.exports = router;
