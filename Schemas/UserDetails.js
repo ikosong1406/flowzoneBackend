@@ -46,6 +46,11 @@ const UserDetailsSchema = new Schema(
       default: "none",
       trim: true,
     },
+    attachment: {
+      type: String,
+      default: "none",
+      trim: true,
+    },
     skills: {
       type: [String],
       default: [],
