@@ -24,10 +24,26 @@ const UserDetailsSchema = new Schema(
     },
     role: {
       type: String,
+      default: "none",
       enum: ["developer", "designer", "project manager", "other"],
+    },
+    collaboration: {
+      type: Number,
+      default: 0,
     },
     bio: {
       type: String,
+      default: "none",
+      trim: true,
+    },
+    industry: {
+      type: String,
+      default: "none",
+      trim: true,
+    },
+    dob: {
+      type: String,
+      default: "none",
       trim: true,
     },
     skills: {
@@ -37,10 +53,6 @@ const UserDetailsSchema = new Schema(
     portfolioLinks: {
       type: [String],
       default: [],
-    },
-    socialLinks: {
-      type: Map,
-      of: String,
     },
     projects: [
       {
